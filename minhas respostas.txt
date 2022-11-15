@@ -1,0 +1,188 @@
+
+
+Q1. What do you need for two functions to be the same type?
+1 They should share the same signatures, including parameter types and return types.
+
+Q2. What does the len() function return if passed a UTF-8 encoded string?
+2 the number of bytes
+
+Q3. Which is not a valid loop construct in Go?
+1 do { ... } while i < 5
+
+Q4. How will you add the number 3 to the right side?
+4 values = append(values, 3)
+
+Q5. What is the value of Read?
+2 iota init with 0; Read value is 1;
+
+Q6. Which is the only valid import statement in Go?
+4 import "github.com/gin-gonic/gin"
+
+Q7. What would happen if you attempted to compile and run this Go program?
+2 It would compile and print [].
+
+Q8. From where is the variable myVar accessible if it is declared outside of any functions in a file in package myPackage located inside module myModule?
+1 It can be accessed anywhere inside myPackage, not the rest of myModule.
+
+Q9. How do you tell go test to print out the tests it is running?
+4 go test -v
+
+Q10. This code printed {0, 0}. How can you fix it?
+3 Make X and Y exported (uppercase)
+
+Q11. What does a sync.Mutex block while it is locked?
+3 any reads or writes of the variable it is locking
+
+Q12. What is an idiomatic way to pause execution of the current scope until an arbitrary number of goroutines have returned?
+4 sync.WaitGroup
+
+Q13. What is a side effect of using time.After in a select statement?
+4 Note: it doesn't block select and does not block other channels.
+
+Q14. What is the select statement used for?
+4 executing a different case based on which channel returns first
+
+Q15. According to the Go documentation standard, how should you document this function?
+3 Explanation: documentation block should start with a function name
+
+Q16. What restriction is there on the type of var to compile this i := myVal.(int)?
+3 myVal must be an interface.
+
+Q17. What is a channel?
+2 a medium for sending values between goroutines
+
+Q18. How can you make a file build only on Windows?
+4 Add a // +build windows comment at the top of the file. Go 1.16 => go:build windows
+
+Q19. What is the correct way to pass this as a body of an HTTP POST request?
+3 resp, err := http.Post("https://httpbin.org/post", "text/plain", strings.NewReader(data))
+
+Q20. What should the idiomatic name be for an interface with a single method and the signature Save() error?
+4 Saver
+
+Q21. A switch statement _ its own lexical block. Each case statement _ an additional lexical block
+3  creates; creates
+
+Q22. What is the default case sensitivity of the JSON Unmarshal function?
+1  The default behavior is case insensitive, but it can be overridden.
+
+Q23. What is the difference between the time package’s Time.Sub() and Time.Add() methods?
+4 Time.Add() accepts a Duration parameter and returns a Time while Time.Sub() accepts a Time parameter and returns a Duration.
+
+Q24. What is the risk of using multiple field tags in a single struct?
+2 It tightly couples different layers of your application.
+
+Q25. Where is the built-in recover method useful?
+3  inside a deferred function
+
+Q26. Which choice does not send output to standard error?
+3 fmt.Errorf("%s\n", message)
+
+Q27. How can you tell Go to import a package from a different location?
+3 Use a replace directive in go.mod.
+
+Q28. If your current working directory is the top level of your project, which command will run all its test packages?
+4 go test ./...
+
+Q29. Which encodings can you put in a string?
+4 UTF-8
+
+
+Q30. How is the behavior of t.Fatal different inside a t.Run?
+3 t.Fatal stops execution of the subtest and continues with other test cases.
+
+Q31. What does log.Fatal do?
+3
+
+Q32. Which is a valid Go time format literal?
+1
+
+Q33. How should you log an error (err)
+2
+
+
+Q34. Which file names will the go test command recognize as test files?
+4
+
+Q35. What will be the output of this code?
+ch := make(chan int)
+ch <- 7
+val := <-ch
+fmt.Println(val)
+
+2 deadlock
+
+
+Q36. What will be the output of this program?
+ch := make(chan int)
+close(ch)
+val := <-ch
+fmt.Println(val)
+
+3 0
+
+Q37. What will be printed in this code?
+var stocks map[string]float64 // stock -> price
+price := stocks["MSFT"]
+fmt.Printf("%f\n", price)
+
+2 0.000000
+
+Q38. What is the common way to have several executables in your project?
+3
+
+Q39. How can you compile main.go to an executable that will run on OSX arm64 ?
+2
+
+Q40. What is the correct syntax to start a goroutine that will print Hello Gopher!?
+3
+
+Q41. If you iterate over a map in a for range loop, in which order will the key:value pairs be accessed?
+1
+
+Q42. What is an idiomatic way to customize the representation of a custom struct in a formatted string?
+3
+
+
+Q43. How can you avoid a goroutine leak in this code?
+
+func findUser(ctx context.Context, login string) (*User, error) {
+    ch := make(chan *User)
+    go func() {
+            ch <- findUserInDB(login)
+    }()
+
+    select {
+    case user := <-ch:
+            return user, nil
+    case <-ctx.Done():
+            return nil, fmt.Errorf("timeout")
+    }
+}
+
+2 Make ch a buffered channel.
+
+44. What will this code print?
+var i int8 = 120
+i += 10
+fmt.Println(i)
+
+1  -126
+
+45. Given the definition of worker below, what is the right syntax to start a start a goroutine that will call worker and send the result to a channel named ch?
+
+go func() {
+    r := worker(m)
+    r -> ch
+} ()
+
+Q46. In this code, which names are exported?
+1
+
+Q47. Which of the following is correct about structures in Go?
+4
+
+
+
+
+
