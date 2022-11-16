@@ -129,19 +129,19 @@ fmt.Printf("%f\n", price)
 2 0.000000
 
 Q38. What is the common way to have several executables in your project?
-3
+1 Have a cmd directory and a directory per executable inside it.
 
 Q39. How can you compile main.go to an executable that will run on OSX arm64 ?
-2
+4 Set GOOS to darwin and GOARCH to arm64.
 
 Q40. What is the correct syntax to start a goroutine that will print Hello Gopher!?
-3
+3 go fmt.Println("Hello Gopher!")
 
 Q41. If you iterate over a map in a for range loop, in which order will the key:value pairs be accessed?
-1
+1 in pseudo-random order that cannot be predicted
 
 Q42. What is an idiomatic way to customize the representation of a custom struct in a formatted string?
-3
+3 Implement a method String() string
 
 
 Q43. How can you avoid a goroutine leak in this code?
@@ -180,7 +180,53 @@ Q46. In this code, which names are exported?
 1
 
 Q47. Which of the following is correct about structures in Go?
+
+ Structure is another user defined data type available in Go programming, which allows you to combine data items of different kinds.
+ Structures are used to represent a record
+ To define a structure, you must use type and struct statements.
+ All of the above
 4
+
+Q48. What does the built-in generate command of the Go compiler do?
+3 It scans the projects source code looking for //go:generate comments, and for each such comment runs the terminal command it specifies.
+
+Q49. Using the time package, how can you get the time 90 minutes from now?
+4 time.Now().Add(90 * time.Minute)
+
+Q50. A program uses a channel to print five integers inside a goroutine while feeding the channel with integers from the main routine, but it doesn't work as is. What do you need to change to make it work?
+2 Add a second parameter to make(chan, int), e.g. make(chan int, 5).
+
+Q51. After importing encoding/json, how will you access the Marshal function?
+4 json.Marshal
+
+Q52. What are the two missing segments of code that would complete the use of context.Context to implement a three-second timeout for this HTTP client making a GET request?
+
+func main() {
+        var cancel context.CancelFunc
+        ctx := context.Background()
+
+        // #1: <=== What should go here?
+
+        req, _ := http.NewRequest(http.MethodGet,
+                "https://linkedin.com",
+                nil)
+
+        // #2: <=== What should go here?
+
+        client := &http.Client{}
+        res, err := client.Do(req)
+        if err != nil {
+                fmt.Println("Request failed:", err)
+                return
+        }
+        fmt.Println("Response received, status code:",
+                res.StatusCode)
+}
+
+2 #1: ctx, cancel = context.WithTimeout(ctx, 3*time.Second); defer cancel() #2: req = req.WithContext(ctx)
+
+
+
 
 
 
